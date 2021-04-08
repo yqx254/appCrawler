@@ -17,14 +17,20 @@ class Crawler(object):
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', self.options)
 
     def start(self):
-        time.sleep(5)
+        time.sleep(15)
         try:
-            confirm = self.driver.find_element_by_id("com.ss.android.ugc.aweme:id/bc8")
+            confirm = self.driver.find_element_by_id("com.ss.android.ugc.aweme:id/b9s")
             confirm.click()
         except:
             print("No agreement found")
+        # 模拟一次上滑
+        x = self.driver.get_window_size()['width']
+        y = self.driver.get_window_size()['height']
+
+        self.driver.swipe(1 / 2 * x, 1 / 2 * y, 1 / 2 * x, 1 / 7 * y, 200)
+        time.sleep(3)
         # 搜索按钮
-        self.driver.find_element_by_id("com.ss.android.ugc.aweme:id/dwo").click()
+        self.driver.find_element_by_id("com.ss.android.ugc.aweme:id/cjx").click()
         time.sleep(3)
         # 搜索框
         edit_text = self.driver.find_element_by_id("com.ss.android.ugc.aweme:id/aia")
@@ -32,7 +38,7 @@ class Crawler(object):
         edit_text.send_keys(u"房星网")
         time.sleep(2)
         # 确定搜索
-        search_res = self.driver.find_element_by_id("com.ss.android.ugc.aweme:id/kjj")
+        search_res = self.driver.find_element_by_id("com.ss.android.ugc.aweme:id/ih9")
         search_res.click()
         time.sleep(5)
         # 寻找用户标签栏
