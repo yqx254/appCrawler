@@ -1,0 +1,140 @@
+syntax = "proto3";
+message Detail{
+    message Type{
+        string name = 1;
+        optional string someId1 = 2;
+        optional string someId2 =  3;
+        optional string something1 = 4;
+        optional string something2 = 5;
+        optional string someType = 6;
+        optional string something3 = 7;
+        optional string something4 = 8;
+        optional string something5 = 9;
+        optional string something6 = 10;
+        optional string something7 = 11;
+    }
+
+    message Info{
+        string someNum1 = 1;
+        string someNum2 = 2;
+        string username = 3;
+        optional string something4 = 4;
+        optional string something5 = 5;
+        optional string something6 = 6;
+        optional string something7 = 7;
+        optional string something8 = 8;
+        //9
+        message Attach{
+            repeated string pic = 1;
+            string ico = 2;
+        }
+        optional string something10 = 10;
+        optional string something11 = 11;
+        optional string something12 = 12;
+        optional string something13 = 13;
+        optional string something14 = 14;
+        optional string something15 = 15;
+        optional string something16 = 16;
+        optional string something17 = 17;
+        optional string something18 = 18;
+        optional string something19 = 19;
+        optional string something20 = 20;
+        //21
+        message Attach2{
+            repeated string pic2 = 1;
+            string ico2 = 2;
+            optional string st1 = 3;
+            optional string st2 = 4;
+            optional string st3 = 5;
+            optional string st4 = 6;
+        }
+        //22
+        message Param1{
+            optional string p1 = 1;
+            optional string p2 = 2;
+            optional string p3 = 3;
+        }
+        //23
+        message Param2{
+            optional string p1 = 1;
+            optional string p2 = 2;
+            optional string p3 = 3;
+            optional string p4 = 4;
+            optional string p5 = 5;
+            optional string p6 = 6;
+            optional string p7 = 7;
+            optional string p8 = 8;
+            optional string p9 = 9;
+            optional string p10 = 10;
+            optional string p11 = 11;
+            optional string p12 = 12;
+            optional string p13 = 13;
+            optional string p14 = 14;
+            optional string p15 = 15;
+            optional string p16 = 16;
+            optional string p17 = 17;
+            optional string p18 = 18;
+            message AttachParam19{
+                repeated string pic2 = 1;
+                string ico2 = 2;
+                optional string st1 = 3;
+                optional string st2 = 4;
+                optional string st3 = 5;
+                optional string st4 = 6;
+            }
+            message AttachParam20{
+                repeated string pic2 = 1;
+                string ico2 = 2;
+                optional string st1 = 3;
+                optional string st2 = 4;
+                optional string st3 = 5;
+                optional string st4 = 6;
+            }
+        }
+        //24
+        message Param24{
+            message Param241{
+                optional string st1 = 1;
+                optional string st2 = 2;
+                optional string st3 = 3;
+                message Param2414{
+                    message Param24141{
+                        string st1 = 1;
+                        message Param241412{
+                            repeated string url11 = 1;
+                            string ico = 2;
+                        }
+                    }
+                    string labelName = 2;
+                }
+            }
+        }
+        optional string st25 = 25;
+        optional string st26 = 26;
+        optional string st27 = 27;
+        optional string st28 = 28;
+        optional string st29 = 29;
+        optional string st30 = 30;
+        optional string st31 = 31;
+        //32
+        message Param32{
+            string st1 = 1;
+        }
+
+    }
+    string chatMessage = 3;
+    //optional string unknown4 = 4;
+    //optional string unknown5 = 5;
+    //optional string unknown6 = 6;
+    //optional bytes unknown7 = 7;
+    //optional string unknown8 = 8;
+    message Param9{
+        message Param91{
+            repeated string url = 1;
+            string icon = 2;
+            optional string st3 = 3;
+            optional string st4 = 4;
+            optional string color = 5;
+        }
+    }
+}

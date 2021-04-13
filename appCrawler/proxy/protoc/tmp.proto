@@ -1,0 +1,6 @@
+syntax = "proto3";
+message Res{
+    string name = 1;
+    string score = 2;
+    string remarks = 3;
+}

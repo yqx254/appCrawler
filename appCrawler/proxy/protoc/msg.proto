@@ -1,0 +1,13 @@
+syntax = "proto3";
+message Response{
+    repeated msg messages = 1;
+    string param2 = 2;
+    int32 param3 = 3;
+    string param4 = 4;
+    string param5 = 5;
+    message msg{
+        string method = 1;
+        bytes payload = 2;
+        uint64 message_id = 3;
+    }
+}
