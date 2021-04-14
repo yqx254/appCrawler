@@ -19,11 +19,87 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ttmp.proto\"3\n\x03Res\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\t\x12\x0f\n\x07remarks\x18\x03 \x01(\tb\x06proto3'
+  serialized_pb=b'\n\ttmp.proto\"\xcc\x01\n\x03Res\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\t\x12\x0f\n\x07remarks\x18\x03 \x01(\t\x12\x1b\n\x06inside\x18\x04 \x03(\x0b\x32\x0b.Res.Inside\x12\x19\n\x05owner\x18\x05 \x01(\x0b\x32\n.Res.Owner\x1a\x33\n\x06Inside\x12\x13\n\x0binside_name\x18\x01 \x01(\t\x12\x14\n\x0cinside_score\x18\x02 \x01(\t\x1a*\n\x05Owner\x12\x12\n\nowner_name\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\tb\x06proto3'
 )
 
 
 
+
+_RES_INSIDE = _descriptor.Descriptor(
+  name='Inside',
+  full_name='Res.Inside',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='inside_name', full_name='Res.Inside.inside_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inside_score', full_name='Res.Inside.inside_score', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=123,
+  serialized_end=174,
+)
+
+_RES_OWNER = _descriptor.Descriptor(
+  name='Owner',
+  full_name='Res.Owner',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='owner_name', full_name='Res.Owner.owner_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='score', full_name='Res.Owner.score', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=176,
+  serialized_end=218,
+)
 
 _RES = _descriptor.Descriptor(
   name='Res',
@@ -54,10 +130,24 @@ _RES = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inside', full_name='Res.inside', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='owner', full_name='Res.owner', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_RES_INSIDE, _RES_OWNER, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -66,19 +156,39 @@ _RES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=13,
-  serialized_end=64,
+  serialized_start=14,
+  serialized_end=218,
 )
 
+_RES_INSIDE.containing_type = _RES
+_RES_OWNER.containing_type = _RES
+_RES.fields_by_name['inside'].message_type = _RES_INSIDE
+_RES.fields_by_name['owner'].message_type = _RES_OWNER
 DESCRIPTOR.message_types_by_name['Res'] = _RES
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Res = _reflection.GeneratedProtocolMessageType('Res', (_message.Message,), {
+
+  'Inside' : _reflection.GeneratedProtocolMessageType('Inside', (_message.Message,), {
+    'DESCRIPTOR' : _RES_INSIDE,
+    '__module__' : 'tmp_pb2'
+    # @@protoc_insertion_point(class_scope:Res.Inside)
+    })
+  ,
+
+  'Owner' : _reflection.GeneratedProtocolMessageType('Owner', (_message.Message,), {
+    'DESCRIPTOR' : _RES_OWNER,
+    '__module__' : 'tmp_pb2'
+    # @@protoc_insertion_point(class_scope:Res.Owner)
+    })
+  ,
   'DESCRIPTOR' : _RES,
   '__module__' : 'tmp_pb2'
   # @@protoc_insertion_point(class_scope:Res)
   })
 _sym_db.RegisterMessage(Res)
+_sym_db.RegisterMessage(Res.Inside)
+_sym_db.RegisterMessage(Res.Owner)
 
 
 # @@protoc_insertion_point(module_scope)

@@ -2,19 +2,43 @@ import mitmproxy.http
 import re
 import msg_pb2
 import payload_pb2
+import userinfo_pb2
+from datetime import datetime
+import json
+import math
 
 
 class Dealer:
     def __init__(self):
-        self.num = 0
+        self._num = 0
+        self._start = datetime.now()
+        self._minute = self._start.minute
+        self._viewer = list()
+        self._comment = 0
+        self._filename = "../storage/" + datetime.strftime(datetime.now(),"%Y-%m-%d") + ".bin"
 
+    #   需要修改请求时可以使用
     # def request(self, flow: mitmproxy.http.HTTPFlow):
     #     if flow.request.host == "webcast.amemv.com" \
     #             and re.match("^/webcast/im/fetch.*$", flow.request.path):
-    #         print("catch!")
+    #         print("catch!")cd
     #         print(flow.response)
 
     def response(self, flow: mitmproxy.http.HTTPFlow):
+        # 每分钟储存一次记录
+        now = datetime.now()
+        if now.minute != self._minute:
+            with open(self._filename, "a") as f:
+                json.dump({
+                    "viewer": sum(self._viewer) / len(self._viewer),
+                    "comment": self._comment,
+                    "time": now.strftime("%d %H%M")
+                }, f)
+                f.write("\n")
+            self._minute = now.minute
+            self._viewer = list()
+            self._comment = 0
+            print("存储记录啦")
         if flow.request.host == "webcast.amemv.com" \
                 and re.match("^/webcast/im/fetch.*$", flow.request.path):
             msg = msg_pb2.Response()
@@ -24,8 +48,19 @@ class Dealer:
                 if x.method == "WebcastChatMessage":
                     payload = payload_pb2.Detail()
                     payload.ParseFromString(x.payload)
-                    user = payload.Type()
-                    print(payload.chatMessage)
+                    user = payload.info
+                    print("%s : %s" % (user.username, payload.chatMessage))
+                    self._comment += 1
+
+                # 点赞真不真？
+                elif x.method == "WebcastLikeMessage":
+                    pass
+                # 到底有几个人？
+                elif x.method == "WebcastRoomUserSeqMessage":
+                    user_info = userinfo_pb2.userResponse()
+                    user_info.ParseFromString(x.payload)
+                    self._viewer.append(user_info.total)
+                    print("直播间人数 %d" % user_info.total)
 
 addons = [
     Dealer()

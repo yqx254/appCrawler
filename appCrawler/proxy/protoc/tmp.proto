@@ -3,4 +3,14 @@ message Res{
     string name = 1;
     string score = 2;
     string remarks = 3;
+    repeated Inside inside = 4;
+    message Inside{
+        string inside_name = 1;
+        string inside_score = 2;
+    }
+    message Owner{
+        string owner_name = 1;
+        string score = 2;
+    }
+    Owner owner = 5;
 }

@@ -13,7 +13,6 @@ message Detail{
         optional string something6 = 10;
         optional string something7 = 11;
     }
-
     message Info{
         string someNum1 = 1;
         string someNum2 = 2;
@@ -122,6 +121,8 @@ message Detail{
         }
 
     }
+    Type type = 1;
+    Info info = 2;
     string chatMessage = 3;
     //optional string unknown4 = 4;
     //optional string unknown5 = 5;

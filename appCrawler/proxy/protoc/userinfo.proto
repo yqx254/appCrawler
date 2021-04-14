@@ -1,0 +1,29 @@
+syntax = "proto3";
+message userResponse{
+    message actionInfo{
+        string tName = 1;
+        string someNum1 = 2;
+        string someNum2 = 3;
+        string someNum3 = 4;
+    }
+    message userInfo{
+        int32 userId = 1;
+        message userDetail{
+            string someNum11 = 1;
+            string someNum12 = 2;
+            string username = 3;
+            message img{
+                repeated string portrait = 1;
+                string icon = 2;
+            }
+        }
+    }
+    actionInfo actions = 1;
+    repeated userInfo userInf = 2;
+    int32 total = 3;
+    string someNumOut1 = 7;
+    string someNumOut2 = 8;
+    string someNumOut3 = 9;
+
+
+}
