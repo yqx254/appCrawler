@@ -5,7 +5,6 @@ import payload_pb2
 import userinfo_pb2
 from datetime import datetime
 import json
-import math
 
 
 class Dealer:
@@ -15,7 +14,7 @@ class Dealer:
         self._minute = self._start.minute
         self._viewer = list()
         self._comment = 0
-        self._filename = "../storage/" + datetime.strftime(datetime.now(),"%Y-%m-%d") + ".bin"
+        self._filename = "../storage/" + datetime.strftime(datetime.now(),"%Y-%m-%d") + ".json"
 
     #   需要修改请求时可以使用
     # def request(self, flow: mitmproxy.http.HTTPFlow):
@@ -27,10 +26,10 @@ class Dealer:
     def response(self, flow: mitmproxy.http.HTTPFlow):
         # 每分钟储存一次记录
         now = datetime.now()
-        if now.minute != self._minute:
+        if now.minute != self._minute and len(self._viewer) > 0:
             with open(self._filename, "a") as f:
                 json.dump({
-                    "viewer": sum(self._viewer) / len(self._viewer),
+                    "viewer": int(sum(self._viewer) / len(self._viewer)),
                     "comment": self._comment,
                     "time": now.strftime("%d %H%M")
                 }, f)
