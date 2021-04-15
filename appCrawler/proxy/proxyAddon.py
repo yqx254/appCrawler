@@ -5,6 +5,7 @@ import payload_pb2
 import userinfo_pb2
 from datetime import datetime
 import json
+import threading
 
 
 class Dealer:
@@ -14,7 +15,7 @@ class Dealer:
         self._minute = self._start.minute
         self._viewer = list()
         self._comment = 0
-        self._filename = "../storage/" + datetime.strftime(datetime.now(),"%Y-%m-%d") + ".json"
+        self._filename = "../storage/" + datetime.strftime(datetime.now(), "%Y-%m-%d") + ".json"
 
     #   需要修改请求时可以使用
     # def request(self, flow: mitmproxy.http.HTTPFlow):
@@ -48,7 +49,9 @@ class Dealer:
                     payload = payload_pb2.Detail()
                     payload.ParseFromString(x.payload)
                     user = payload.info
-                    print("%s : %s" % (user.username, payload.chatMessage))
+                    t1 = threading.Thread(target=save_comment, args=(user.username, user.userId1, payload.chatMessage))
+                    t1.start()
+                    print("%s(%s | %s) : %s" % (user.username, user.userId1, user.userId2, payload.chatMessage))
                     self._comment += 1
 
                 # 点赞真不真？
@@ -60,6 +63,19 @@ class Dealer:
                     user_info.ParseFromString(x.payload)
                     self._viewer.append(user_info.total)
                     print("直播间人数 %d" % user_info.total)
+
+
+lock = threading.Lock()
+
+
+def save_comment(userid, username, comment):
+    lock.acquire()
+    try:
+        with open("../storage/" + "comment.log", "a") as file:
+            file.write(u"%s:%s:%s\n" % (userid, username, comment))
+    finally:
+        lock.release()
+
 
 addons = [
     Dealer()

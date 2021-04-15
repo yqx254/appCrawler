@@ -35,12 +35,24 @@ class Diagram(object):
         ax2.plot(x, y2, '--',color="green", label=u'弹幕数')
         fig.legend(loc=1)
 
-        ax.set_xlabel("时间")
+        ax.set_xlabel(u"时间")
         ax.set_ylabel(u"观看人数")
         ax2.set_ylabel(u"弹幕数")
-
         plt.grid()
+        num = comment_analysis()
+        maxNum = max(audience)
+        minNum = min(audience)
+        plt.savefig("./appCrawler/storage/output/" + self._date +
+                    "-观看峰值" + str(maxNum) + "-最低人数" + str(minNum) + "-发言人数" + str(num) + ".jpg")
         plt.show()
+
+
+def comment_analysis():
+    userids = set()
+    with open("./appCrawler/storage/comment.log", "r") as file:
+        for x in file.readlines():
+            userids.add(str.split(x,':')[1])
+    return len(userids)
 
 
 def mapping(data):
