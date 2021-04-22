@@ -28,7 +28,7 @@ class Dealer:
         # 每分钟储存一次记录
         now = datetime.now()
         if now.minute != self._minute and len(self._viewer) > 0:
-            with open(self._filename, "a") as f:
+            with open(self._filename, "a", encoding="utf-8") as f:
                 json.dump({
                     "viewer": int(sum(self._viewer) / len(self._viewer)),
                     "comment": self._comment,
@@ -71,7 +71,7 @@ lock = threading.Lock()
 def save_comment(userid, username, comment):
     lock.acquire()
     try:
-        with open("../storage/" + "comment.log", "a") as file:
+        with open("../storage/" + "comment.log", "a",encoding="utf-8") as file:
             file.write(u"%s:%s:%s\n" % (userid, username, comment))
     finally:
         lock.release()

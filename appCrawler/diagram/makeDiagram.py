@@ -17,7 +17,7 @@ class Diagram(object):
         time_list = []
         audience = []
         comment = []
-        with open(filename, "r") as file:
+        with open(filename, "r", encoding="utf-8") as file:
             for x in file.readlines():
                 data = json.loads(x, object_hook=mapping)
                 time_list.append(data.time)
@@ -49,7 +49,7 @@ class Diagram(object):
 
 def comment_analysis():
     userids = set()
-    with open("./appCrawler/storage/comment.log", "r") as file:
+    with open("./appCrawler/storage/comment.log", "r", encoding="utf-8") as file:
         for x in file.readlines():
             userids.add(str.split(x,':')[1])
     return len(userids)
